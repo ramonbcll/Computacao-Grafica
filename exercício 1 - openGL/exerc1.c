@@ -140,8 +140,8 @@ void keyboard(unsigned char key, int x, int y) {
         break;
     case 'p':
         glLoadIdentity();
-        //gluPerspective(65.0, (GLfloat) largura/(GLfloat) altura, 20.0, 120.0);
-        //gluLookAt(0, 0, -90, 0, 0, 0, 0, 1, 0);
+        gluPerspective(65.0, (GLfloat) largura/(GLfloat) altura, 20.0, 120.0);
+        gluLookAt(0, 0, -90, 0, 0, 0, 0, 1, 0);
         glutPostRedisplay();
         break;
     case 'o':
