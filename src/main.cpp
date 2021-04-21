@@ -1,5 +1,3 @@
-//https://www.programmersought.com/article/1263524392/
-//g++ -g -std=c++17  -I./include -L./lib src/main.cpp -o main -lglfw3dll -lfreeglut -lopengl32 -lglu32
 #include <C:\temp\include\GL\glut.h>
 #include <C:\temp\include\GLFW\glfw3.h>
 #include <gl/GLU.h>
