@@ -15,7 +15,7 @@ Cam::~Cam() {
 
 void Cam::activate() {
 	vec3 look = m_pos + m_dir;
-	gluLookAt(m_pos.x, m_pos.y, m_pos.z, look.x, look.y, look.z, m_up.x, m_up.y, m_up.z);
+    gluLookAt(m_pos.x + 0.4, m_pos.y + 0.5, m_pos.z, look.x + 0.4, look.y + 0.3, look.z, m_up.x, m_up.y, m_up.z);
 }
 
 void Cam::forward() {

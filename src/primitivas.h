@@ -71,16 +71,6 @@ void drawSphere(unsigned int& id, color cor, GLfloat raio, GLuint nStacks, GLuin
         indices.push_back(pt);
     }
 
-    /*
-    glColor3fv(red);
-    glPointSize(2.5);
-    glBegin(GL_POINTS);
-        for(GLuint i = 0; i < points.size(); i++) {
-            glVertex3fv(&points[i].x);
-        }
-    glEnd();
-    */
-
 	glNewList(id, GL_COMPILE);
 
 	glColor3fv(cor);
