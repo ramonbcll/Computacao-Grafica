@@ -1,3 +1,5 @@
+//https://www.programmersought.com/article/1263524392/
+//g++ -g -std=c++17  -I./include -L./lib src/main.cpp -o main -lglfw3dll -lfreeglut -lopengl32 -lglu32
 #include <C:\temp\include\GL\glut.h>
 #include <C:\temp\include\GLFW\glfw3.h>
 #include <gl/GLU.h>
@@ -16,9 +18,9 @@ struct Obj {
     Obj():id(0), pos(vec3(0.0, 0.0, 0.0)){}
 };
 
-const GLuint total_obj = 8;
+const GLuint total_obj = 9;
 std::vector<Obj> obj;
-Cam cam(vec3(-100, 0, 0));
+Cam cam(vec3(0, 0, 0));
 
 void resize(int w, int h) {
     glViewport(0, 0, w, h);
@@ -32,9 +34,7 @@ void resize(int w, int h) {
     glMatrixMode(GL_MODELVIEW);
 }
 
-void draw(float dt) {
-    float veloc_ang = 60.0 * dt; // 60 graus por segundo
-    
+void draw(float dt) {    
     glLoadIdentity();
 
     cam.activate();
@@ -53,18 +53,6 @@ void draw(float dt) {
         glCallList(obj[i].id);
         glPopMatrix();
     }
-
-	angulo += veloc_ang;
-	if (angulo >= 360.0)
-		angulo = 0.0;
-}
-
-float random(float a, float b) {
-    float n = (float) rand() / RAND_MAX;
-    float t = b - a;
-    float r = a + n * t;
-
-    return r;
 }
 
 void callbackKeyboard(GLFWwindow* window, int key, int scanCode, int action, int mods) {
@@ -120,35 +108,44 @@ void init(GLFWwindow* window) {
 
     obj[0].id = glGenLists(total_obj);
     drawGround(obj[0].id);
-
-    for(int i = 1; i < total_obj; i++) {
-        obj[i].id = obj[0].id + i;
-        float x = random(-100, 100);
-        float y = random(8, 20);
-        float z = random(-450, -20);
-        obj[i].pos = vec3(x, 0, z);
-
-        float k = (float) rand() / RAND_MAX;
-        if(k <= 0.5) {
-            color* cor;
-            if(k <= 0.15) {
-                cor = &green;
-            }
-            else {
-                cor = &orange;
-            }
-            drawSphere(obj[i].id, *cor, 5.0, 20.0, 20.0);
-        }
-        else {
-            drawCube(obj[i].id, 5.0);
-        }
-    }
+    // Parede fundo
+    obj[1].id = obj[0].id + 1;
+    obj[1].pos = vec3(0.0, 0.5, -10.0);       // Posição
+    drawCube(obj[1].id, 3.0, 1.0, 0.05, 1);   // Tamanho
+    // Parede direita
+    obj[2].id = obj[0].id + 2;
+    obj[2].pos = vec3(3.0, 0.5, -7.05);       // Posição
+    drawCube(obj[2].id, 0.05, 1.0, 3.0, 2);   // Tamanho
+    // Parede esquerda
+    obj[3].id = obj[0].id + 3;
+    obj[3].pos = vec3(-3.0, 0.5, -7.05);      // Posição
+    drawCube(obj[3].id, 0.05, 1.0, 3.0, 3);   // Tamanho
+    // Parede frente/direita
+    obj[4].id = obj[0].id + 4;
+    obj[4].pos = vec3(0.6, 0.5, -4.10);       // Posição
+    drawCube(obj[4].id, 2.40, 1.0, 0.05, 4);  // Tamanho
+    // Parede frente/esquerda
+    obj[5].id = obj[0].id + 5;
+    obj[5].pos = vec3(-2.9, 0.5, -4.10);      // Posição
+    drawCube(obj[5].id, -0.14, 1.0, 0.05, 5); // Tamanho
+    // Parede frente/cima
+    obj[6].id = obj[0].id + 6;
+    obj[6].pos = vec3(-0.8, 1.2, -4.10);      // Posição
+    drawCube(obj[6].id, -2.0, 0.3, 0.05, 6);  // Tamanho
+    // Teto
+    obj[7].id = obj[0].id + 7;
+    obj[7].pos = vec3(0.0, 1.4, -7.05);       // Posição
+    drawCube(obj[7].id, -3.0, 0.05, 3.0, 7);  // Tamanho
+    // Piso
+    obj[8].id = obj[0].id + 8;
+    obj[8].pos = vec3(0.0, -0.5, -7.05);      // Posição
+    drawCube(obj[8].id, -3.05, 0.007, 3.0, 8);  // Tamanho
 }
 
 int main(void) {
     glfwInit();
 
-    GLFWwindow* window = glfwCreateWindow(800, 600, "Sphere", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(1366, 768, "Sphere", NULL, NULL);
 
     glfwMakeContextCurrent(window);
 

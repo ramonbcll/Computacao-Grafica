@@ -1,5 +1,5 @@
 #include "Cam.h"
-#include <Windows.h>
+#include <C:\temp\include\GL\glut.h>
 #include <gl/GLU.h>
 
 Cam::Cam(vec3 pos) {

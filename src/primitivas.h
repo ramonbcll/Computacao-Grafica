@@ -15,17 +15,16 @@ void rect(vec3 p1, vec3 p2, vec3 p3, vec3 p4, color cor) {
     glEnd();
 }
 
-void drawCube(GLuint id, float s) {
-    float d = s / 2.0;
+void drawCube(GLuint id, float x, float y, float z, int side) {
 
-    vec3 v1(-d,  d,  d);
-    vec3 v2(-d, -d,  d);
-    vec3 v3( d, -d,  d);
-    vec3 v4( d,  d,  d);
-    vec3 v5( d,  d, -d);
-    vec3 v6( d, -d, -d);
-    vec3 v7(-d, -d, -d);
-    vec3 v8(-d,  d, -d);
+    vec3 v1(-x,  y,  z);
+    vec3 v2(-x, -y,  z);
+    vec3 v3( x, -y,  z);
+    vec3 v4( x,  y,  z);
+    vec3 v5( x,  y, -z);
+    vec3 v6( x, -y, -z);
+    vec3 v7(-x, -y, -z);
+    vec3 v8(-x,  y, -z);
 
 	glNewList(id, GL_COMPILE);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
