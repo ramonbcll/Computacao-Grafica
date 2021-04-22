@@ -5,9 +5,15 @@
 #include <cmath>
 #include "Cam.h"
 
-void rect(vec3 p1, vec3 p2, vec3 p3, vec3 p4, color cor) {
+static float r = 0.0;
+
+void rect(vec3 p1, vec3 p2, vec3 p3, vec3 p4, color cor, int b) {
     glColor3fv(cor);
     glBegin(GL_QUADS);
+        /*if(b) {
+            glRotatef(r, 0.0, 0.0, 1.0);
+            r += 0.1;
+        }*/
         glVertex3fv(&p1.x);
         glVertex3fv(&p2.x);
         glVertex3fv(&p3.x);
@@ -15,7 +21,7 @@ void rect(vec3 p1, vec3 p2, vec3 p3, vec3 p4, color cor) {
     glEnd();
 }
 
-void drawCube(GLuint id, float x, float y, float z, int side) {
+void drawCube(GLuint id, float x, float y, float z, int side, int b) {
 
     vec3 v1(-x,  y,  z);
     vec3 v2(-x, -y,  z);
@@ -29,17 +35,17 @@ void drawCube(GLuint id, float x, float y, float z, int side) {
 	glNewList(id, GL_COMPILE);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     // Front
-    rect(v1, v2, v3, v4, red);
+    rect(v1, v2, v3, v4, red, b);
     // Right
-    rect(v4, v3, v6, v5, blue);
+    rect(v4, v3, v6, v5, blue, b);
     // Back
-    rect(v5, v8, v7, v6, yellow);
+    rect(v5, v8, v7, v6, yellow, b);
     // Left
-    rect(v1, v8, v7, v2, green);
+    rect(v1, v8, v7, v2, green, b);
     // Top
-    rect(v1, v4, v5, v8, orange);
+    rect(v1, v4, v5, v8, orange, b);
     // Bottom
-    rect(v2, v7, v6, v3, violet);
+    rect(v2, v7, v6, v3, violet, b);
 
 	glEndList();
 }
@@ -74,18 +80,18 @@ void drawSphere(unsigned int& id, color cor, GLfloat raio, GLuint nStacks, GLuin
 	glNewList(id, GL_COMPILE);
 
 	glColor3fv(cor);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glEnable(GL_CULL_FACE);
 	glFrontFace(GL_CCW);
 	glCullFace(GL_BACK);
 
 	for(GLuint i = 0; i < nStacks; i++) {
-		/*if(i % 3 == 0) 
+		if(i % 3 == 0) 
 			glColor3fv(white_i);
 		else if(i % 3 == 1) 
 			glColor3fv(gray);
 		else
-			glColor3fv(dark_gray);*/
+			glColor3fv(dark_gray);
 		glBegin(GL_TRIANGLE_STRIP);  
 			for(GLuint j = 0; j < nSectors; j++) {
 				GLuint index = indices[i][j];
