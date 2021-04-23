@@ -7,7 +7,7 @@
 #include <cstdlib>
 #include "primitivas.h"
 
-static float angulo = 0.0;
+static float angulo = 45.0;
 static float lastMousePos = 0.0;
 static bool firstTimeMouse = true;
 
@@ -34,7 +34,8 @@ void resize(int w, int h) {
     glMatrixMode(GL_MODELVIEW);
 }
 
-void draw(float dt) {    
+void draw(float dt) {   
+    float velocidade_ang = 50.f * dt; 
     glLoadIdentity();
 
     cam.activate();
@@ -49,10 +50,18 @@ void draw(float dt) {
 
         glPushMatrix();
         glTranslatef(x, y, z);
-        glRotatef(angulo, 1.0, 1.0, 0.0);
+        if(i == 36 || i == 37 || i == 38)
+            glRotatef(angulo, 0.0, 0.0, 1.0);
         glCallList(obj[i].id);
         glPopMatrix();
     }
+
+    angulo += velocidade_ang;
+
+	if (angulo >= 360.0)
+	{
+		angulo = 0.0;
+	}
 }
 
 void callbackKeyboard(GLFWwindow* window, int key, int scanCode, int action, int mods) {
@@ -156,7 +165,7 @@ void init(GLFWwindow* window) {
     // Tapete
     obj[12].id = obj[0].id + 12;
     obj[12].pos = vec3(0.0, -0.49, -7.05);       // Posição
-    drawCube(obj[12].id, -2.55, 0.007, 2.5, 12, 0); // Tamanho
+    drawCube(obj[12].id, 1.0, -0.007, 1.0, 12, 0); // Tamanho
 
     // Pé 1 cama
     obj[13].id = obj[0].id + 13;
@@ -232,12 +241,12 @@ void init(GLFWwindow* window) {
     // Livro
     obj[30].id = obj[0].id + 30;
     obj[30].pos = vec3(1.0, 0.02, -4.4);         // Posição
-    drawCube(obj[30].id, 0.1, 0.005, 0.1, 30, 0);   // Tamanho
+    drawCube(obj[30].id, -0.1, -0.005, 0.1, 30, 0);   // Tamanho
 
-    // Parede fundo
+    // Guarda-roupas
     obj[31].id = obj[0].id + 31;
     obj[31].pos = vec3(0.5, 0.2, -9.6);           // Posição
-    drawCube(obj[31].id, 1.6, 0.8, 0.3, 31, 0);   // Tamanho
+    drawCube(obj[31].id, 1.6, 0.7, -0.3, 31, 0);   // Tamanho
 
     //Criado mudo
     obj[32].id = obj[0].id + 32;
@@ -267,11 +276,11 @@ void init(GLFWwindow* window) {
     obj[38].id = obj[0].id + 38;
     obj[38].pos = vec3(2.5, 0.05, -4.45);           // Posição
     drawCube(obj[38].id, 0.01, 0.06, 0.01, 35, 1);  // Tamanho
-    
+
     // Bola infantil
     obj[39].id = obj[0].id + 39;
-    obj[39].pos = vec3(2.5, -0.17, -9.45);             // Posição
-    drawSphere(obj[39].id, white_i, 0.3, 20.0, 20.0);  // Tamanho
+    obj[39].pos = vec3(2.5, -0.2, -9.45);             // Posição
+    drawSphere(obj[39].id, white_i, 0.27, 20.0, 20.0);  // Tamanho
 }
 
 int main(void) {
