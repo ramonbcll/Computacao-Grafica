@@ -5,15 +5,44 @@
 #include <cmath>
 #include "Cam.h"
 
-static float r = 0.0;
+void rectTex(vec3 p1, vec3 p2, vec3 p3, vec3 p4) {
+    glBegin(GL_QUADS);
+        glTexCoord2f(0.0, 0.0); glVertex3fv(&p1.x);
+        glTexCoord2f(1.0, 0.0); glVertex3fv(&p2.x);
+        glTexCoord2f(1.0, 1.0); glVertex3fv(&p3.x);
+        glTexCoord2f(0.0, 1.0); glVertex3fv(&p4.x);
+    glEnd();
+}
 
-void rect(vec3 p1, vec3 p2, vec3 p3, vec3 p4, color cor, int b) {
+void drawCube_wTex(GLuint id, float x, float y, float z, GLuint texid) {
+    vec3 v1(-x,  y,  z);
+    vec3 v2(-x, -y,  z);
+    vec3 v3( x, -y,  z);
+    vec3 v4( x,  y,  z);
+    vec3 v5( x,  y, -z);
+    vec3 v6( x, -y, -z);
+    vec3 v7(-x, -y, -z);
+    vec3 v8(-x,  y, -z);
+
+	glNewList(id, GL_COMPILE);
+    glBindTexture(GL_TEXTURE_2D, texid);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+   
+    rectTex(v2, v3, v4, v1); // Front
+    rectTex(v4, v3, v6, v5); // Right
+    rectTex(v5, v8, v7, v6); // Back
+    rectTex(v1, v8, v7, v2); // Left
+    rectTex(v1, v4, v5, v8); // Top
+    rectTex(v2, v7, v6, v3); // Bottom
+
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+	glEndList();
+}
+
+void rect(vec3 p1, vec3 p2, vec3 p3, vec3 p4, color cor) {
     glColor3fv(cor);
     glBegin(GL_QUADS);
-        /*if(b) {
-            glRotatef(r, 0.0, 0.0, 1.0);
-            r += 0.1;
-        }*/
         glVertex3fv(&p1.x);
         glVertex3fv(&p2.x);
         glVertex3fv(&p3.x);
@@ -21,8 +50,7 @@ void rect(vec3 p1, vec3 p2, vec3 p3, vec3 p4, color cor, int b) {
     glEnd();
 }
 
-void drawCube(GLuint id, float x, float y, float z, int side, int b) {
-
+void drawCube(GLuint id, float x, float y, float z) {
     vec3 v1(-x,  y,  z);
     vec3 v2(-x, -y,  z);
     vec3 v3( x, -y,  z);
@@ -34,18 +62,13 @@ void drawCube(GLuint id, float x, float y, float z, int side, int b) {
 
 	glNewList(id, GL_COMPILE);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-    // Front
-    rect(v1, v2, v3, v4, red, b);
-    // Right
-    rect(v4, v3, v6, v5, blue, b);
-    // Back
-    rect(v5, v8, v7, v6, yellow, b);
-    // Left
-    rect(v1, v8, v7, v2, green, b);
-    // Top
-    rect(v1, v4, v5, v8, orange, b);
-    // Bottom
-    rect(v2, v7, v6, v3, violet, b);
+   
+    rect(v1, v2, v3, v4, red); // Front
+    rect(v4, v3, v6, v5, blue); // Right
+    rect(v5, v8, v7, v6, yellow); // Back
+    rect(v1, v8, v7, v2, green); // Left
+    rect(v1, v4, v5, v8, orange); // Top
+    rect(v2, v7, v6, v3, violet); // Bottom
 
 	glEndList();
 }
