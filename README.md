@@ -23,5 +23,9 @@ __A__ - Esquerda
 
 __MOUSE__ - Gira a visão em 360° na horizontal
 
+__P__ - Abrir e fechar a porta
+
+__J__ - Abrir e fechar a janela
+
 
 __OBS:__ É preciso alterar caminho do include glut.h e glfw3.h 
