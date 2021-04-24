@@ -21,7 +21,7 @@ __D__ - Direita
 
 __A__ - Esquerda
 
-__MOUSE__ - Gira a visão no eixo X em 360°
+__MOUSE__ - Gira a visão em 360° na horizontal
 
 
 __OBS:__ É preciso alterar caminho do include glut.h e glfw3.h 
