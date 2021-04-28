@@ -10,7 +10,7 @@ Projeto final da disciplina de Computação Gráfica ministrada pelo professor M
 - [x] O quarto deverá ter no mínimo 5 objetos, além da cama, mesa, cadeira, ventilador e quadro; 
 - [x] 1 Porta: a porta do Quarto deverá ser aberta e fechada usando o teclado
 - [x] 1 Janela: a janela deverá ser aberta e fechada usando o teclado;
-- [x] O usuário deverá navegar com o teclado/mouse na modelagem permitindo ao usuário visualizar o Quarto em 360º (dica: deixe o Quarto bem amplo);
+- [x] O usuário deverá navegar com o teclado/mouse na modelagem permitindo ao usuário visualizar o Quarto em 360º;
 
 ### Requisitos relacionados a nota da AB2:
 
