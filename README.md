@@ -2,6 +2,10 @@
 
 Projeto final da disciplina de Computação Gráfica ministrada pelo professor Marcelo Costa Oliveira no curso de Ciência da Computação (UFAL) com o intuito de modelar um quarto 3D utilizando OpenGL.
 
+#### Vídeo da apresentação:
+
+https://youtu.be/7WAL8gfkIfs
+
 ## Requisitos
 
 ### Requisitos relacionados a nota da AB1:
