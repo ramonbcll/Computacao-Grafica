@@ -113,9 +113,11 @@ void draw() {
 		glDisable(GL_LIGHT0);
 	}
     if(luzG == 1) {
+		//glEnable(GL_LIGHT1);
 		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_ADD);
 	}
 	else {
+		//glDisable(GL_LIGHT1);
 		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	}
 
@@ -342,8 +344,8 @@ void init(GLFWwindow* window) {
     drawCube_wTex(obj[34].id, 0.251, 0.201, 0.199, texID[13]);  // Tamanho
 
     // Base ventilador
-    obj[35].pos = vec3(2.5, -0.05, -4.4);                   // Posição
-    drawCube_wTex(obj[35].id, 0.08, 0.01, 0.08, texID[3]);  // Tamanho
+    obj[35].pos = vec3(2.5, -0.08, -4.37);                  // Posição
+    esfera(obj[35].id, 0.08);                               // Tamanho
     // Tronco ventilador
     obj[36].pos = vec3(2.5, -0.03, -4.35);                  // Posição
     drawCube_wTex(obj[36].id, 0.02, 0.08, 0.02, texID[5]);  // Tamanho
@@ -387,7 +389,7 @@ void init(GLFWwindow* window) {
 
     // Esfera luz
     obj[48].pos = vec3(0.7, 0.25, -4.4);                     // Posição
-    esfera(obj[48].id);
+    esfera(obj[48].id, 0.04f);
     // Suporte
     obj[49].pos = vec3(0.6, 0.26, -4.4);                     // Posição
     drawCube_wTex(obj[49].id, 0.08, 0.01, 0.01, texID[3]);   // Tamanho
