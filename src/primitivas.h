@@ -184,11 +184,10 @@ void drawGround(unsigned int id) {
 	glEndList();
 }
 
-void esfera(unsigned int& id) {
+void esfera(unsigned int& id, GLfloat raio) {
 	std::vector<std::vector<vec3> > pontos;
 	std::vector<std::vector<vec3> > normals;
 
-	float raio = 0.04f;
 	unsigned nStacks = 10;
 	unsigned nSectors = 10;
 	const float PI = 3.14159265359;
