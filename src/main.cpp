@@ -113,11 +113,9 @@ void draw() {
 		glDisable(GL_LIGHT0);
 	}
     if(luzG == 1) {
-		//glEnable(GL_LIGHT1);
 		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_ADD);
 	}
 	else {
-		//glDisable(GL_LIGHT1);
 		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	}
 
