@@ -63,8 +63,11 @@ __Editor de código__: Visual Studio Code;
 __Sistema Operacional utilizado__: Windows 10;
 
 __Referência__: https://www.youtube.com/playlist?list=PLVRDPs83ZhmcXYuktF3r2hfyoabg_EVPO
+
                 https://www.programmersought.com/article/1263524392/
+                
                 https://www.glfw.org/documentation.html
+                
                 http://docs.gl/
                 
 
